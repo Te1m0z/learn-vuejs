@@ -1,11 +1,12 @@
-import s from './app.module.css';
+import PeoplePage from '../PeoplePage';
 
-console.log(s);
+// styles
+import s from './app.module.css';
 
 const App = () => {
   return (
     <div>
-      <h1>app</h1>
+      <PeoplePage />
     </div>
   )
 }

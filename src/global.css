@@ -1,0 +1,33 @@
+:root {
+    --color-white: #fff;
+    --color-black: #000;
+    --color-dark-grey: #10100e;
+
+    --spacing-med: 20px;
+    --spacing-sm: 10px;
+
+    --border-radius-sm: 10px;
+
+    --yellow: gold;
+
+    --font-size-sm: 16px;
+    --font-size-med: 18px;
+    --font-size-big: 25px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background: var(--color-dark-grey);
+}
+
+h1, h2 {
+    color: var(--color-white)
+}

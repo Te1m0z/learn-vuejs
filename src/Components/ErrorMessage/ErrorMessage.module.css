@@ -1,0 +1,11 @@
+.error_block {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.error_block p {
+    color: var(--yellow);
+    text-shadow: 0 0 4px var(--color-white);
+    font-size: var(--font-size-big);
+    margin-bottom: var(--spacing-med);
+}

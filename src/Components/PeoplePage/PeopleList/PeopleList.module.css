@@ -1,0 +1,27 @@
+.list__container {
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+}
+
+.list__item {
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-white);
+    margin: var(--spacing-med);
+    text-align: center;
+}
+
+.list__item a {
+    color: var(--color-black);
+}
+
+.list__item p {
+    margin: var(--spacing-sm) 0;
+}
+
+.person__photo {
+    max-height: 250px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+}

@@ -1,3 +1,7 @@
+<<<<<<< HEAD:src/Components/PeoplePage/PeopleList/PeopleList.jsx
+=======
+import React from 'react';
+>>>>>>> dbc99a9365b7bfc8f3970d7e1a9226a6ae09205d:src/components/PeoplePage/PeopleList/PeopleList.jsx
 import PropTypes from 'prop-types';
 
 import styles from './PeopleList.module.css';
@@ -21,7 +25,11 @@ const PeopleList = ({ people }) => {
     )
 }
 
+<<<<<<< HEAD:src/Components/PeoplePage/PeopleList/PeopleList.jsx
 PeopleList.propTypes ={
+=======
+PeopleList.propTypes = {
+>>>>>>> dbc99a9365b7bfc8f3970d7e1a9226a6ae09205d:src/components/PeoplePage/PeopleList/PeopleList.jsx
     people: PropTypes.array
 }
 

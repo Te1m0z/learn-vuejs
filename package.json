@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco build"
   },
   "eslintConfig": {
     "extends": [

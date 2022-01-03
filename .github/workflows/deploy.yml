@@ -1,0 +1,16 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: [7.x]
+    steps:
+      - uses: actions/checkout@v2
+      - run: set -eu

@@ -29,5 +29,21 @@ const USER_CSS_JS = [
     'scripts' => [],
 ];
 
-$a = 12;
-$b = '/';
+use core\base\exceptions\RouteException;
+
+# подгрузка пространств имён
+function autoloadMainClasses($name)
+{
+    # заменяем обратный слеш на прямой
+    $name = str_replace('\\', '/', $name);
+
+    # проверка на возможность подключения
+    # @ - блокирует вывод ошибок от функции
+    # include_once, если невозможно подключить
+    if (!@include_once $name . '.php') {
+        throw new RouteException('Неверное имя файла для - ' . $name);
+    }
+}
+
+# автоподгрузка __autoload
+spl_autoload_register('autoloadMainClasses');

@@ -19,12 +19,8 @@ require_once 'config.php';
 # настройки для переноса сайта между хостингами
 require_once 'core/base/settings/internal_settings.php';
 
-function loadAPI($name)
-{
-    $name = str_replace('\\', '/', $name);
-    include $name.'.php';
-}
+use core\base\exceptions\RouteException;
 
-spl_autoload_register('loadAPI');
-
-// var_dump(new \API\Start());
+echo "<pre>";
+print_r(new RouteException());
+echo "</pre>";

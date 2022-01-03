@@ -28,3 +28,6 @@ const USER_CSS_JS = [
     'styles' => [],
     'scripts' => [],
 ];
+
+$a = 12;
+$b = '/';

@@ -19,4 +19,6 @@ require_once 'config.php';
 # настройки для переноса сайта между хостингами
 require_once 'core/base/settings/internal_settings.php';
 
-var_dump(new n1\A());
+// var_dump(new n1\A());
+
+echo 'Hellow orld';

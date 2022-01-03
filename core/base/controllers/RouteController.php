@@ -14,11 +14,18 @@ class RouteController
     {
         # если ИЗ ВНЕ пытаются создать
         # объект, а он уже создан
-        if (self::$_instance instanceof self)
-        {
+        if (self::$_instance instanceof self) {
             return self::$_instance;
         }
         # если экземпляра ещё нет, то создать
         return self::$_instance = new self;
+    }
+
+    private function __construct()
+    {
+    }
+
+    private function __clone()
+    {
     }
 }

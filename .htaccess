@@ -2,7 +2,7 @@
 # например: \'dadada\'
 # *будем работать с ковычками внутри кода
 # чтобы не было 2 раза экронизации и тп.
-# php_flag magic_quotes_gpc Off
+#php_flag magic_quotes_gpc Off
 
 # дефолтная кодировка
 AddDefaultCharset utf-8

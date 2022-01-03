@@ -20,7 +20,10 @@ require_once 'config.php';
 require_once 'core/base/settings/internal_settings.php';
 
 use core\base\exceptions\RouteException;
+use core\base\controllers\RouteController;
 
-echo "<pre>";
-print_r(new RouteException());
-echo "</pre>";
+try {
+    RouteController::getInstance()->route();
+} catch (RouteException $err) {
+    exit($err->getMessage());
+}

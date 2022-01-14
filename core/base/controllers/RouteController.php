@@ -2,6 +2,8 @@
 
 namespace core\base\controllers;
 
+use core\base\settings\Settings;
+use core\base\settings\ShopSettings;
 
 # Singleton класс-одиночка
 class RouteController
@@ -18,11 +20,20 @@ class RouteController
             return self::$_instance;
         }
         # если экземпляра ещё нет, то создать
-        return self::$_instance = new self;
+        self::$_instance = new self;
+        return self::$_instance;
     }
 
     private function __construct()
     {
+        // $s1 = Settings::get('routes');
+        $s2 = ShopSettings::get('baseSettings');
+
+        // printed($s1);
+        printed($s2);
+        // printed(ShopSettings::getInstance());
+
+        exit();
     }
 
     private function __clone()

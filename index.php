@@ -14,6 +14,9 @@ header('Content-Type:text/html;charset=utf-8');
 # *действует пока не закроется браузер
 session_start();
 
+# вспомогающие функции
+require_once 'libraries/functions.php';
+
 require_once 'config.php';
 
 # настройки для переноса сайта между хостингами
@@ -23,7 +26,12 @@ use core\base\exceptions\RouteException;
 use core\base\controllers\RouteController;
 
 try {
-    RouteController::getInstance()->route();
+
+    $c = RouteController::getInstance();
+
+    // printed($c);
+
 } catch (RouteException $err) {
+
     exit($err->getMessage());
 }

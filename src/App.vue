@@ -3,15 +3,25 @@
     <label for="ticker">Ticker</label>
     <input type="text" id="ticker" v-model="ticker" v-on:keydown.enter="add" />
     <button @click="add">Click me</button>
-    <div v-for="t in tickers" :key="t.name">
-      <div class="element">
+    <div
+      v-for="(t, idx) in tickers"
+      :key="idx"
+      @click="sel = t"
+      :class="{ red: sel === t }"
+    >
+      <template class="element">
         <div>{{ t.name }}</div>
         <div>{{ t.price }}</div>
-        <button @click="handleDelete(t)">Delete</button>
-      </div>
+        <button @click.stop="handleDelete(t)">Delete</button>
+      </template>
     </div>
 
     <div v-if="tickers.length === 0">No data</div>
+
+    <div v-if="sel">
+      <div>{{ sel.name }}</div>
+      <button @click="sel = null">Close</button>
+    </div>
   </div>
 </template>
 
@@ -20,12 +30,13 @@ export default {
   name: "App",
   data() {
     return {
-      ticker: "da",
+      ticker: null,
       tickers: [
         { name: "Valutte", price: "100" },
         { name: "Hommi", price: "-" },
         { name: "Doogcoin", price: "999" }
-      ]
+      ],
+      sel: null
     };
   },
   methods: {
@@ -35,6 +46,7 @@ export default {
     },
     handleDelete(tickerToRemove) {
       this.tickers = this.tickers.filter((t) => t !== tickerToRemove);
+      this.sel = null;
     }
   }
 };

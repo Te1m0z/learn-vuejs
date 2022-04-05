@@ -1,9 +1,10 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 import HomePage from "@/pages/HomePage.vue";
 
 export const router = createRouter({
-  history: createWebHashHistory(),
+  mode: "history",
+  history: createWebHistory(),
   routes: [
     {
       name: "Home",
@@ -17,14 +18,3 @@ export const router = createRouter({
     }
   ]
 });
-
-export function routerPush(name, params) {
-  if (params !== undefined) {
-    return router.push({
-      name,
-      params
-    });
-  } else {
-    return router.push({ name });
-  }
-}

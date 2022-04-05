@@ -1,52 +1,22 @@
 <template>
-  <div>
-    <label for="ticker">Ticker</label>
-    <input type="text" id="ticker" v-model="ticker" v-on:keydown.enter="add" />
-    <button @click="add">Click me</button>
-    <div
-      v-for="(t, idx) in tickers"
-      :key="idx"
-      @click="sel = t"
-      :class="{ red: sel === t }"
-    >
-      <template class="element">
-        <div>{{ t.name }}</div>
-        <div>{{ t.price }}</div>
-        <button @click.stop="handleDelete(t)">Delete</button>
-      </template>
-    </div>
-
-    <div v-if="tickers.length === 0">No data</div>
-
-    <div v-if="sel">
-      <div>{{ sel.name }}</div>
-      <button @click="sel = null">Close</button>
-    </div>
-  </div>
+  <post-form @creatingPost="creatingPostInApp" />
+  <post-list :list="posts" />
 </template>
 
 <script>
+import PostForm from "@/components/PostForm.vue";
+import PostList from "@/components/PostList.vue";
 export default {
+  components: { PostForm, PostList },
   name: "App",
   data() {
     return {
-      ticker: null,
-      tickers: [
-        { name: "Valutte", price: "100" },
-        { name: "Hommi", price: "-" },
-        { name: "Doogcoin", price: "999" }
-      ],
-      sel: null
+      posts: []
     };
   },
   methods: {
-    add() {
-      this.tickers.push({ name: this.ticker, price: "-" });
-      this.ticker = "";
-    },
-    handleDelete(tickerToRemove) {
-      this.tickers = this.tickers.filter((t) => t !== tickerToRemove);
-      this.sel = null;
+    creatingPostInApp(post) {
+      this.posts.push(post);
     }
   }
 };

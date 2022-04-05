@@ -1,6 +1,6 @@
 <template>
   <AppNavigation />
-  <div class="container mx-auto text-white">
+  <div class="container mx-auto">
     <router-view />
   </div>
 </template>

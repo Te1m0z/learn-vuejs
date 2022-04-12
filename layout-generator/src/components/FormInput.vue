@@ -9,7 +9,7 @@
       :placeholder="holder"
       :value="modelValue"
       @input="updateInput"
-      class="border rounded-md border-cyan-400 ml-3 w-1/3 h-fit"
+      class="border rounded-md border-cyan-400 ml-3 w-1/3 h-fit px-2 py-1"
     />
     <slot></slot>
   </div>

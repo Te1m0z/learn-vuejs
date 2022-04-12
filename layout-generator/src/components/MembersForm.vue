@@ -13,8 +13,9 @@
     />
     <form-input
       :id="'img' + prefix"
-      label="Ссылка на картинку"
+      label="Ссылка на фото"
       v-model="member.img"
+      class="ml-0"
     />
     <form-input
       :id="'spin-link' + prefix"
@@ -24,7 +25,7 @@
       <input
         type="text"
         :id="'spin-name' + prefix"
-        class="border rounded-md border-cyan-400 ml-3 w-1/3"
+        class="border rounded-md border-cyan-400 ml-3 w-1/3 px-2 py-1"
         placeholder="Сокращ. текст"
         v-model="member.spin.name"
       />
@@ -37,7 +38,7 @@
       <input
         type="text"
         :id="'res-name' + prefix"
-        class="border rounded-md border-cyan-400 ml-3 w-1/3"
+        class="border rounded-md border-cyan-400 ml-3 w-1/3 px-2 py-1"
         placeholder="Сокращ. текст"
         v-model="member.researcher.name"
       />
@@ -50,7 +51,7 @@
       <input
         type="text"
         :id="'orcid-name' + prefix"
-        class="border rounded-md border-cyan-400 ml-3 w-1/3"
+        class="border rounded-md border-cyan-400 ml-3 w-1/3 px-2 py-1"
         placeholder="Сокращ. текст"
         v-model="member.orcid.name"
       />
@@ -63,7 +64,7 @@
       <input
         type="text"
         :id="'scop-name' + prefix"
-        class="border rounded-md border-cyan-400 ml-3 w-1/3"
+        class="border rounded-md border-cyan-400 ml-3 w-1/3 px-2 py-1"
         placeholder="Сокращ. текст"
         v-model="member.scopus.name"
       />
@@ -77,7 +78,7 @@
       <input
         type="text"
         :id="'math-name' + prefix"
-        class="border rounded-md border-cyan-400 ml-3 w-1/3"
+        class="border rounded-md border-cyan-400 ml-3 w-1/3 px-2 py-1"
         placeholder="Сокращ. текст"
         v-model="member.mathNet.name"
       />
@@ -91,7 +92,7 @@
       <input
         type="text"
         :id="'author-name' + prefix"
-        class="border rounded-md border-cyan-400 ml-3 w-1/3 h-fit"
+        class="border rounded-md border-cyan-400 ml-3 w-1/3 h-fit px-2 py-1"
         placeholder="Сокращ. текст"
         v-model="member.authorID.name"
       />
@@ -105,7 +106,7 @@
       <input
         type="text"
         :id="'zentr-name' + prefix"
-        class="border rounded-md border-cyan-400 ml-3 w-1/3"
+        class="border rounded-md border-cyan-400 ml-3 w-1/3 px-2 py-1"
         placeholder="Сокращ. текст"
         v-model="member.zentralBlatt.name"
       />
@@ -119,7 +120,7 @@
       <input
         type="text"
         :id="'google-name' + prefix"
-        class="border rounded-md border-cyan-400 ml-3 w-1/3"
+        class="border rounded-md border-cyan-400 ml-3 w-1/3 px-2 py-1"
         placeholder="Сокращ. текст"
         v-model="member.googleScholar.name"
       />

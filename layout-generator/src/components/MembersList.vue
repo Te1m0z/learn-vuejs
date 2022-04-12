@@ -4,10 +4,16 @@
     <template v-for="m in mainRedactors" :key="m.id">
       <div class="my-2 md:my-5 temp-el relative">
         <button
-          @click="openModal(m)"
+          @click="$emit('edit', m)"
           class="absolute right-0 text-green-300 border p-2"
         >
           Edit
+        </button>
+        <button
+          @click="$emit('delete', m)"
+          class="absolute right-0 text-green-300 border p-2 bottom-0"
+        >
+          Delete
         </button>
         <div class="flex flex-col sm:flex-row border">
           <img
@@ -87,7 +93,19 @@
       Заместитель главного редактора
     </div>
     <template v-for="m in helpRedactors" :key="m.id">
-      <div class="my-2 md:my-5 temp-el">
+      <div class="my-2 md:my-5 temp-el relative">
+        <button
+          @click="$emit('edit', m)"
+          class="absolute right-0 text-green-300 border p-2"
+        >
+          Edit
+        </button>
+        <button
+          @click="$emit('delete', m)"
+          class="absolute right-0 text-green-300 border p-2 bottom-0"
+        >
+          Delete
+        </button>
         <div class="flex flex-col sm:flex-row border">
           <img
             class="
@@ -166,7 +184,19 @@
       Редакционная коллегия
     </div>
     <template v-for="m in defaultRedactors" :key="m.id">
-      <div class="my-2 md:my-5 temp-el">
+      <div class="my-2 md:my-5 temp-el relative">
+        <button
+          @click="$emit('edit', m)"
+          class="absolute right-0 text-green-300 border p-2"
+        >
+          Edit
+        </button>
+        <button
+          @click="$emit('delete', m)"
+          class="absolute right-0 text-green-300 border p-2 bottom-0"
+        >
+          Delete
+        </button>
         <div class="flex flex-col sm:flex-row border">
           <img
             class="
@@ -247,9 +277,7 @@
 <script>
 export default {
   props: {
-    members: {
-      type: Array,
-    },
+    members: Array,
   },
   computed: {
     mainRedactors() {
@@ -262,11 +290,12 @@ export default {
       return this.members.filter(({ role }) => role == "default");
     },
   },
-  methods: {
-    openModal(member) {
-      this.$emit("update:modal", true);
-      this.$emit("update:currentMember", member);
-    },
-  },
 };
 </script>
+
+<style>
+.members-list {
+  border: 1px solid green;
+  border-radius: 10px;
+}
+</style>

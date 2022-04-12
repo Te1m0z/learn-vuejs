@@ -1,50 +1,60 @@
 <template>
   <div class="container mx-auto">
-    <template-form @createMember="createMember" />
-    <collegy-members
+    <members-form @create="createMember" @save="saveMember" />
+    <members-list
       :members="members"
-      v-model:modal="modalVisible"
-      v-model:currentMember="currentEditableMember"
+      @edit="editMember"
+      @delete="deleteMember"
     />
+    <my-modal v-model:show="modalVisible">
+      <members-form
+        @save="saveMember"
+        :currentMember="currentMember"
+        :edit="edit"
+        prefix="modal_"
+      />
+    </my-modal>
   </div>
-  <modal-form v-model:show="modalVisible">
-    <template-form
-      @editMember="editMember"
-      :edit="true"
-      :currentEditableMember="currentEditableMember"
-    />
-  </modal-form>
 </template>
 
 <script>
-import TemplateForm from "@/components/TemplateForm.vue";
-import CollegyMembers from "@/components/CollegyMembers.vue";
-import ModalForm from "@/components/ModalForm.vue";
+import MembersList from "@/components/MembersList.vue";
+import MembersForm from "@/components/MembersForm.vue";
+import MyModal from "@/components/MyModal.vue";
 
 export default {
-  components: {
-    TemplateForm,
-    CollegyMembers,
-    ModalForm,
-  },
   data() {
     return {
       members: [],
+      edit: false,
+      currentMember: {},
       modalVisible: false,
-      currentEditableMember: { id: null },
     };
   },
+  components: {
+    MembersList,
+    MembersForm,
+    MyModal,
+  },
   methods: {
-    createMember(member) {
-      this.members.push(member);
+    createMember(m) {
+      this.members.push(m);
     },
-    editMember(member) {
-      console.log(member.id)
-      this.members.map((m) => m.id === member.id ? member : m);
+    saveMember(updatedMember) {
+      this.modalVisible = false;
+      this.members = this.members.map((m) =>
+        m.id === updatedMember.id ? updatedMember : m
+      );
+      this.currentMember = null;
     },
-    openDialog() {
+    editMember(m) {
+      this.currentMember = m;
       this.modalVisible = true;
-      console.log(this.currentEditableMember);
+      this.edit = true;
+    },
+    deleteMember(m) {
+      let index = this.members.findIndex((o) => o.id === m.id);
+      if (index !== -1) this.members.splice(index, 1);
     },
   },
 };

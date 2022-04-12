@@ -1,6 +1,8 @@
 <template>
   <div class="flex my-2">
-    <label :for="id" class="inline-block w-1/3">{{ label }}</label>
+    <label :for="id" class="w-1/3">
+      {{ label }}
+    </label>
     <input
       :type="type"
       :id="id"

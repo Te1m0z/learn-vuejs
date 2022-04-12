@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent class="max-w-lg mx-auto">
-    <h1 class="my-2 text-center">Создать участника ред. коллегии</h1>
     <form-textarea :id="'fio' + prefix" label="ФИО" v-model="member.fio" />
     <form-textarea
       :id="'address' + prefix"
@@ -8,17 +7,17 @@
       v-model="member.address"
     />
     <form-textarea
-      :id="'work' + +prefix"
+      :id="'work' + prefix"
       label="Должность"
       v-model="member.position"
     />
     <form-input
-      :id="'img' + +prefix"
+      :id="'img' + prefix"
       label="Ссылка на картинку"
       v-model="member.img"
     />
     <form-input
-      :id="'spin-link' + +prefix"
+      :id="'spin-link' + prefix"
       label="SPIN:"
       v-model="member.spin.link"
     >
@@ -137,7 +136,7 @@
         class="result-btn border border-red-500 py-1 px-4"
         @click="createMember"
       >
-        Готово
+        {{ edit ? "Сохранить" : "Создать" }}
       </button>
     </div>
   </form>
@@ -146,7 +145,12 @@
 <script>
 import FormTextarea from "@/components/FormTextarea.vue";
 import FormInput from "@/components/FormInput.vue";
+
 export default {
+  components: {
+    FormTextarea,
+    FormInput,
+  },
   props: {
     prefix: {
       type: String,
@@ -157,108 +161,150 @@ export default {
       type: Boolean,
       default: false,
     },
-    currentEditableMember: {
+    currentMember: {
       type: Object,
-      default: new Object({}),
+      required: false,
+      default() {
+        return {
+          id: null,
+          fio: "",
+          address: "",
+          position: "",
+          role: "default",
+          img: "",
+          spin: {
+            link: "",
+            name: "",
+          },
+          researcher: {
+            link: "",
+            name: "",
+          },
+          orcid: {
+            link: "",
+            name: "",
+          },
+          scopus: {
+            link: "",
+            name: "",
+          },
+          mathNet: {
+            link: "",
+            name: "",
+          },
+          authorID: {
+            link: "",
+            name: "",
+          },
+          zentralBlatt: {
+            link: "",
+            name: "",
+          },
+          googleScholar: {
+            link: "",
+            name: "",
+          },
+        };
+      },
     },
-  },
-  components: {
-    FormTextarea,
-    FormInput,
   },
   data() {
     return {
       member: {
-        id: null,
-        fio: this.currentEditableMember.fio,
-        address: this.currentEditableMember.address,
-        position: this.currentEditableMember.position,
-        img: "",
-        role: "default",
+        id: this.currentMember.id,
+        fio: this.currentMember.fio,
+        address: this.currentMember.address,
+        position: this.currentMember.position,
+        role: this.currentMember.role,
+        img: this.currentMember.img,
         spin: {
-          link: "",
-          name: "",
+          link: this.currentMember.spin.link,
+          name: this.currentMember.spin.name,
         },
         researcher: {
-          link: "",
-          name: "",
+          link: this.currentMember.researcher.link,
+          name: this.currentMember.researcher.name,
         },
         orcid: {
-          link: "",
-          name: "",
+          link: this.currentMember.orcid.link,
+          name: this.currentMember.orcid.name,
         },
         scopus: {
-          link: "",
-          name: "",
+          link: this.currentMember.scopus.link,
+          name: this.currentMember.scopus.name,
         },
         mathNet: {
-          link: "",
-          name: "",
+          link: this.currentMember.mathNet.link,
+          name: this.currentMember.mathNet.name,
         },
         authorID: {
-          link: "",
-          name: "",
+          link: this.currentMember.authorID.link,
+          name: this.currentMember.authorID.name,
         },
         zentralBlatt: {
-          link: "",
-          name: "",
+          link: this.currentMember.zentralBlatt.link,
+          name: this.currentMember.zentralBlatt.name,
         },
         googleScholar: {
-          link: "",
-          name: "",
+          link: this.currentMember.googleScholar.link,
+          name: this.currentMember.googleScholar.name,
         },
       },
     };
   },
   methods: {
     createMember() {
-      this.member.id = Date.now();
-      this.$emit("createMember", this.member);
-      this.$emit("editMember", this.member);
+      if (this.currentMember.id) {
+        console.log("save");
+        this.$emit("save", this.member);
+      } else {
+        this.member.id = Date.now();
+        this.$emit("create", this.member);
+      }
       this.member = {
-        id: null,
-        fio: "",
-        address: "",
-        position: "",
-        role: "default",
-        img: "",
+        id: this.currentMember.id,
+        fio: this.currentMember.fio,
+        address: this.currentMember.address,
+        position: this.currentMember.position,
+        role: this.currentMember.role,
+        img: this.currentMember.img,
         spin: {
-          link: "",
-          name: "",
+          link: this.currentMember.spin.link,
+          name: this.currentMember.spin.name,
         },
         researcher: {
-          link: "",
-          name: "",
+          link: this.currentMember.researcher.link,
+          name: this.currentMember.researcher.name,
         },
         orcid: {
-          link: "",
-          name: "",
+          link: this.currentMember.orcid.link,
+          name: this.currentMember.orcid.name,
         },
         scopus: {
-          link: "",
-          name: "",
+          link: this.currentMember.scopus.link,
+          name: this.currentMember.scopus.name,
         },
         mathNet: {
-          link: "",
-          name: "",
+          link: this.currentMember.mathNet.link,
+          name: this.currentMember.mathNet.name,
         },
         authorID: {
-          link: "",
-          name: "",
+          link: this.currentMember.authorID.link,
+          name: this.currentMember.authorID.name,
         },
         zentralBlatt: {
-          link: "",
-          name: "",
+          link: this.currentMember.zentralBlatt.link,
+          name: this.currentMember.zentralBlatt.name,
         },
         googleScholar: {
-          link: "",
-          name: "",
+          link: this.currentMember.googleScholar.link,
+          name: this.currentMember.googleScholar.name,
         },
       };
-    },
-    updateField(event) {
-      this.member.spin.name = event.target.value;
     },
   },
 };
 </script>
+
+<style>
+</style>

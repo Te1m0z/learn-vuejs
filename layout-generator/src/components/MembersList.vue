@@ -2,7 +2,7 @@
   <div>
     <div class="my-6 font-bold text-base md:text-xl pl-3">Главный редактор</div>
     <template v-for="m in mainRedactors" :key="m.id">
-      <div class="my-2 md:my-5 temp-el relative">
+      <div :class="classWrapper">
         <button
           @click="$emit('edit', m)"
           class="absolute right-0 text-green-300 border p-2"
@@ -278,6 +278,22 @@
 export default {
   props: {
     members: Array,
+    template: String,
+  },
+  data() {
+    return {
+      classWrapper: "my-2 md:my-5 temp-el relative",
+      classColumns: "flex flex-col sm:flex-row border",
+      classImage:
+        "w-full h-32 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 object-center object-contain mb-5 sm:mb-0",
+      classRightColumn: "sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left",
+      classFio: "text-lg lg:text-xl font-bold",
+      classAddress: "mt-2 underline underline-offset-2",
+      classPosition: "text-sm mt-2 sm:text-base md:text-lg w-full",
+      classAdditional:
+        "flex flex-wrap mt-2 text-base sm:text-base md:text-xl lg:text-2xl",
+      classAddLink: "font-bold underline underline-offset-2",
+    };
   },
   computed: {
     mainRedactors() {
@@ -289,6 +305,52 @@ export default {
     defaultRedactors() {
       return this.members.filter(({ role }) => role == "default");
     },
+  },
+  update() {
+    console.log(this.template)
+    switch (this.template) {
+      case "first":
+        (this.classWrapper = "my-2 md:my-5 temp-el relative"),
+          (this.classColumns = "flex flex-col sm:flex-row border"),
+          (this.classImage =
+            "w-full h-32 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 object-center object-contain mb-5 sm:mb-0"),
+          (this.classRightColumn =
+            "sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left"),
+          (this.classFio = "text-lg lg:text-xl font-bold"),
+          (this.classAddress = "mt-2 underline underline-offset-2"),
+          (this.classPosition = "text-sm mt-2 sm:text-base md:text-lg w-full"),
+          (this.classAdditional =
+            "flex flex-wrap mt-2 text-base sm:text-base md:text-xl lg:text-2xl"),
+          (this.classAddLink = "font-bold underline underline-offset-2");
+        break;
+      case "second":
+        (this.classWrapper = "my-2 md:my-5 temp-el relative"),
+          (this.classColumns = "flex flex-col sm:flex-row border"),
+          (this.classImage =
+            "w-full h-32 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 object-center object-contain mb-5 sm:mb-0"),
+          (this.classRightColumn =
+            "sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left"),
+          (this.classFio = "text-lg lg:text-xl font-bold"),
+          (this.classAddress = "mt-2 underline underline-offset-2"),
+          (this.classPosition = "text-sm mt-2 sm:text-base md:text-lg w-full"),
+          (this.classAdditional =
+            "flex flex-wrap mt-2 text-base sm:text-base md:text-xl lg:text-2xl"),
+          (this.classAddLink = "font-bold");
+        break;
+      default:
+        (this.classWrapper = "my-2 md:my-5 temp-el relative"),
+          (this.classColumns = "flex flex-col sm:flex-row border"),
+          (this.classImage =
+            "w-full h-32 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 object-center object-contain mb-5 sm:mb-0"),
+          (this.classRightColumn =
+            "sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left"),
+          (this.classFio = "text-lg lg:text-xl font-bold"),
+          (this.classAddress = "mt-2 underline underline-offset-2"),
+          (this.classPosition = "text-sm mt-2 sm:text-base md:text-lg w-full"),
+          (this.classAdditional =
+            "flex flex-wrap mt-2 text-base sm:text-base md:text-xl lg:text-2xl"),
+          (this.classAddLink = "font-bold underline underline-offset-2");
+    }
   },
 };
 </script>

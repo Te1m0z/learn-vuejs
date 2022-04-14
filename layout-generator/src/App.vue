@@ -31,18 +31,13 @@ import MembersForm from "@/components/MembersForm.vue";
 import MyModal from "@/components/MyModal.vue";
 
 export default {
-  watch: {
-    template(val) {
-      console.log(val)
-    }
-  },
   data() {
     return {
       members: [],
       edit: false,
       currentMember: {},
       modalVisible: false,
-      template: 'second' 
+      template: 'first' 
     };
   },
   components: {

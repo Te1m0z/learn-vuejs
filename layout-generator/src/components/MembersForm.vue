@@ -168,42 +168,42 @@ export default {
       default() {
         return {
           id: null,
-          fio: "",
-          address: "",
-          position: "",
+          fio: "Шамионов Раиль Мунирович",
+          address: "Саратовский национальный исследовательский государственный университет г. Саратов, Россия",
+          position: "д. психол. н., профессор, заведующий кафедрой социальной психологии образования и развития, декан факультета психолого-педагогического и специального образования, Саратовский национальный исследовательский государственный университет имени Н.Г.Чернышевского; Саратов, Россия",
           role: "default",
           img: "",
           spin: {
-            link: "",
-            name: "",
+            link: "https://elibrary.ru/author_profile.asp?spin=9529-8906",
+            name: "9529-8906",
           },
           researcher: {
-            link: "",
-            name: "",
+            link: "https://publons.com/researcher/2666269/rail-m-shamionov/",
+            name: "C-2869-2013",
           },
           orcid: {
-            link: "",
-            name: "",
+            link: "https://orcid.org/0000-0001-8358-597X",
+            name: "0000-0001-8358-597X",
           },
           scopus: {
-            link: "",
-            name: "",
+            link: "https://www.scopus.com/authid/detail.uri?authorId=56528356700",
+            name: "56528356700",
           },
           mathNet: {
-            link: "",
-            name: "",
+            link: "#",
+            name: "14470",
           },
           authorID: {
-            link: "",
-            name: "",
+            link: "#",
+            name: "2935",
           },
           zentralBlatt: {
-            link: "",
-            name: "",
+            link: "#",
+            name: "Zentrablatt",
           },
           googleScholar: {
-            link: "",
-            name: "",
+            link: "#",
+            name: "Google Scholar",
           },
         };
       },

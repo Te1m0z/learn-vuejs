@@ -1,21 +1,22 @@
 <template>
   <div>
-    <div class="my-6 font-bold text-base md:text-xl pl-3">Главный редактор</div>
+    <div :class="mainRedactor">Главный редактор</div>
+
     <template v-for="m in mainRedactors" :key="m.id">
       <div :class="classWrapper">
         <button
           @click="$emit('edit', m)"
-          class="absolute right-0 text-green-300 border p-2"
+          class="absolute right-0 text-green-300"
         >
           Edit
         </button>
         <button
           @click="$emit('delete', m)"
-          class="absolute right-0 text-green-300 border p-2 bottom-0"
+          class="absolute right-0 text-green-300 bottom-0"
         >
           Delete
         </button>
-        <div class="flex flex-col sm:flex-row border">
+        <div class="flex flex-col sm:flex-row">
           <img
             class="
               w-full
@@ -34,79 +35,73 @@
             "
             alt="#"
           />
-          <div class="sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left">
-            <p class="text-lg lg:text-xl font-bold">{{ m.fio }}</p>
-            <p class="mt-2 underline underline-offset-2">
-              <a href="#">{{ m.address }}</a>
+          <div :class="classRightColumn">
+            <p :class="classMemberName">{{ m.fio }}</p>
+            <p :class="classMemberAddress">
+              <a href="#">
+                {{ template === "second" && "(" }}{{ m.address
+                }}{{ template === "second" && ")" }}
+              </a>
             </p>
             <p class="text-sm mt-2 sm:text-base md:text-lg w-full">
               {{ m.position }}
             </p>
-            <div
-              class="
-                flex flex-wrap
-                mt-2
-                text-base
-                sm:text-base
-                md:text-xl
-                lg:text-2xl
-              "
-            >
+            <div :class="classRightLinks">
+              <div v-if="template === 'second'" class="w-1/2">
+                Scopus Author ID:
+                <a :href="m.scopus.link" :class="classRightLink">{{
+                  m.scopus.name
+                }}</a>
+              </div>
               <div class="w-1/2">
                 SPIN:
-                <a
-                  :href="m.spin.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.spin.name }}</a
-                >
+                <a :href="m.spin.link" :class="classRightLink">{{
+                  m.spin.name
+                }}</a>
               </div>
               <div class="w-1/2">
                 ORCID:
-                <a
-                  :href="m.orcid.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.orcid.name }}</a
-                >
+                <a :href="m.orcid.link" :class="classRightLink">{{
+                  m.orcid.name
+                }}</a>
               </div>
               <div class="w-1/2">
                 ResearcherID:
-                <a
-                  :href="m.researcher.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.researcher.name }}</a
-                >
+                <a :href="m.researcher.link" :class="classRightLink">{{
+                  m.researcher.name
+                }}</a>
               </div>
               <div class="w-1/2">
                 ScopusID:
-                <a
-                  :href="m.scopus.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.scopus.name }}</a
-                >
+                <a :href="m.scopus.link" :class="classRightLink">{{
+                  m.scopus.name
+                }}</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </template>
+
     <div class="my-6 font-bold text-base md:text-xl pl-3">
       Заместитель главного редактора
     </div>
+
     <template v-for="m in helpRedactors" :key="m.id">
-      <div class="my-2 md:my-5 temp-el relative">
+      <div :class="classWrapper">
         <button
           @click="$emit('edit', m)"
-          class="absolute right-0 text-green-300 border p-2"
+          class="absolute right-0 text-green-300"
         >
           Edit
         </button>
         <button
           @click="$emit('delete', m)"
-          class="absolute right-0 text-green-300 border p-2 bottom-0"
+          class="absolute right-0 text-green-300 bottom-0"
         >
           Delete
         </button>
-        <div class="flex flex-col sm:flex-row border">
+        <div class="flex flex-col sm:flex-row">
           <img
             class="
               w-full
@@ -125,8 +120,8 @@
             "
             alt="#"
           />
-          <div class="sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left">
-            <p class="text-lg lg:text-xl font-bold">{{ m.fio }}</p>
+          <div :class="classRightColumn">
+            <p :class="classMemberName">{{ m.fio }}</p>
             <p class="mt-2 underline underline-offset-2">
               <a href="#">{{ m.address }}</a>
             </p>
@@ -145,59 +140,53 @@
             >
               <div class="w-1/2">
                 SPIN:
-                <a
-                  :href="m.spin.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.spin.name }}</a
-                >
+                <a :href="m.spin.link" :class="classRightLink">{{
+                  m.spin.name
+                }}</a>
               </div>
               <div class="w-1/2">
                 ORCID:
-                <a
-                  :href="m.orcid.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.orcid.name }}</a
-                >
+                <a :href="m.orcid.link" :class="classRightLink">{{
+                  m.orcid.name
+                }}</a>
               </div>
               <div class="w-1/2">
                 ResearcherID:
-                <a
-                  :href="m.researcher.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.researcher.name }}</a
-                >
+                <a :href="m.researcher.link" :class="classRightLink">{{
+                  m.researcher.name
+                }}</a>
               </div>
               <div class="w-1/2">
                 ScopusID:
-                <a
-                  :href="m.scopus.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.scopus.name }}</a
-                >
+                <a :href="m.scopus.link" :class="classRightLink">{{
+                  m.scopus.name
+                }}</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </template>
+
     <div class="my-6 font-bold text-base italic md:text-xl pl-3">
       Редакционная коллегия
     </div>
+
     <template v-for="m in defaultRedactors" :key="m.id">
-      <div class="my-2 md:my-5 temp-el relative">
+      <div :class="classWrapper">
         <button
           @click="$emit('edit', m)"
-          class="absolute right-0 text-green-300 border p-2"
+          class="absolute right-0 text-green-300"
         >
           Edit
         </button>
         <button
           @click="$emit('delete', m)"
-          class="absolute right-0 text-green-300 border p-2 bottom-0"
+          class="absolute right-0 text-green-300 bottom-0"
         >
           Delete
         </button>
-        <div class="flex flex-col sm:flex-row border">
+        <div class="flex flex-col sm:flex-row">
           <img
             class="
               w-full
@@ -216,8 +205,8 @@
             "
             alt="#"
           />
-          <div class="sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left">
-            <p class="text-lg lg:text-xl font-bold">{{ m.fio }}</p>
+          <div :class="classRightColumn">
+            <p :class="classMemberName">{{ m.fio }}</p>
             <p class="mt-2 underline underline-offset-2">
               <a href="#">{{ m.address }}</a>
             </p>
@@ -236,35 +225,27 @@
             >
               <div class="w-1/2">
                 SPIN:
-                <a
-                  :href="m.spin.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.spin.name }}</a
-                >
+                <a :href="m.spin.link" :class="classRightLink">{{
+                  m.spin.name
+                }}</a>
               </div>
               <div class="w-1/2">
                 ORCID:
-                <a
-                  :href="m.orcid.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.orcid.name }}</a
-                >
+                <a :href="m.orcid.link" :class="classRightLink">{{
+                  m.orcid.name
+                }}</a>
               </div>
               <div class="w-1/2">
                 ResearcherID:
-                <a
-                  :href="m.researcher.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.researcher.name }}</a
-                >
+                <a :href="m.researcher.link" :class="classRightLink">{{
+                  m.researcher.name
+                }}</a>
               </div>
               <div class="w-1/2">
                 ScopusID:
-                <a
-                  :href="m.scopus.link"
-                  class="font-bold underline underline-offset-2"
-                  >{{ m.scopus.name }}</a
-                >
+                <a :href="m.scopus.link" :class="classRightLink">{{
+                  m.scopus.name
+                }}</a>
               </div>
             </div>
           </div>
@@ -280,21 +261,6 @@ export default {
     members: Array,
     template: String,
   },
-  data() {
-    return {
-      classWrapper: "my-2 md:my-5 temp-el relative",
-      classColumns: "flex flex-col sm:flex-row border",
-      classImage:
-        "w-full h-32 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 object-center object-contain mb-5 sm:mb-0",
-      classRightColumn: "sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left",
-      classFio: "text-lg lg:text-xl font-bold",
-      classAddress: "mt-2 underline underline-offset-2",
-      classPosition: "text-sm mt-2 sm:text-base md:text-lg w-full",
-      classAdditional:
-        "flex flex-wrap mt-2 text-base sm:text-base md:text-xl lg:text-2xl",
-      classAddLink: "font-bold underline underline-offset-2",
-    };
-  },
   computed: {
     mainRedactors() {
       return this.members.filter(({ role }) => role == "redactor");
@@ -305,52 +271,76 @@ export default {
     defaultRedactors() {
       return this.members.filter(({ role }) => role == "default");
     },
-  },
-  update() {
-    console.log(this.template)
-    switch (this.template) {
-      case "first":
-        (this.classWrapper = "my-2 md:my-5 temp-el relative"),
-          (this.classColumns = "flex flex-col sm:flex-row border"),
-          (this.classImage =
-            "w-full h-32 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 object-center object-contain mb-5 sm:mb-0"),
-          (this.classRightColumn =
-            "sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left"),
-          (this.classFio = "text-lg lg:text-xl font-bold"),
-          (this.classAddress = "mt-2 underline underline-offset-2"),
-          (this.classPosition = "text-sm mt-2 sm:text-base md:text-lg w-full"),
-          (this.classAdditional =
-            "flex flex-wrap mt-2 text-base sm:text-base md:text-xl lg:text-2xl"),
-          (this.classAddLink = "font-bold underline underline-offset-2");
-        break;
-      case "second":
-        (this.classWrapper = "my-2 md:my-5 temp-el relative"),
-          (this.classColumns = "flex flex-col sm:flex-row border"),
-          (this.classImage =
-            "w-full h-32 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 object-center object-contain mb-5 sm:mb-0"),
-          (this.classRightColumn =
-            "sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left"),
-          (this.classFio = "text-lg lg:text-xl font-bold"),
-          (this.classAddress = "mt-2 underline underline-offset-2"),
-          (this.classPosition = "text-sm mt-2 sm:text-base md:text-lg w-full"),
-          (this.classAdditional =
-            "flex flex-wrap mt-2 text-base sm:text-base md:text-xl lg:text-2xl"),
-          (this.classAddLink = "font-bold");
-        break;
-      default:
-        (this.classWrapper = "my-2 md:my-5 temp-el relative"),
-          (this.classColumns = "flex flex-col sm:flex-row border"),
-          (this.classImage =
-            "w-full h-32 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 object-center object-contain mb-5 sm:mb-0"),
-          (this.classRightColumn =
-            "sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left"),
-          (this.classFio = "text-lg lg:text-xl font-bold"),
-          (this.classAddress = "mt-2 underline underline-offset-2"),
-          (this.classPosition = "text-sm mt-2 sm:text-base md:text-lg w-full"),
-          (this.classAdditional =
-            "flex flex-wrap mt-2 text-base sm:text-base md:text-xl lg:text-2xl"),
-          (this.classAddLink = "font-bold underline underline-offset-2");
-    }
+    mainRedactor() {
+      switch (this.template) {
+        case "first":
+          return "my-6 font-bold text-base md:text-xl pl-3";
+        case "second":
+          return "my-6 text-base md:text-2xl pl-3 text-sky-600";
+        default:
+          return "";
+      }
+    },
+    classWrapper() {
+      switch (this.template) {
+        case "first":
+          return "my-2 md:my-5 temp-el relative";
+        case "second":
+          return "my-2 md:my-5 temp-el relative";
+        default:
+          return "";
+      }
+    },
+    classRightColumn() {
+      switch (this.template) {
+        case "first":
+          return "sm:ml-4 p-0 sm:p-3 w-full text-center sm:text-left";
+        case "second":
+          return "sm:ml-16 p-0 sm:p-3 w-full text-center sm:text-left";
+        default:
+          return "";
+      }
+    },
+    classMemberName() {
+      switch (this.template) {
+        case "first":
+          return "text-lg lg:text-xl font-bold";
+        case "second":
+          return "text-lg lg:text-2xl inline";
+        default:
+          return "";
+      }
+    },
+    classMemberAddress() {
+      switch (this.template) {
+        case "first":
+          return "mt-2 underline underline-offset-2";
+        case "second":
+          return "mt-0 inline ml-3 text-lg lg:text-2xl";
+        default:
+          return "";
+      }
+    },
+    classRightLinks() {
+      switch (this.template) {
+        case "first":
+          return "flex flex-wrap mt-2 text-base sm:text-base md:text-xl lg:text-2xl";
+        case "second":
+          return "flex flex-col mt-6 text-base font-bold";
+        default:
+          return "";
+      }
+    },
+    classRightLink() {
+      switch (this.template) {
+        case "first":
+          return "font-bold underline underline-offset-2";
+        case "second":
+          return "font-normal text-sky-500";
+        default:
+          return "";
+      }
+    },
   },
 };
 </script>
